@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - anaconda
 dependencies:
-  - cudatoolkit-dev=10.1.243
+  - cudatoolkit-dev=11.0.3
   - func_timeout=4.3.5
   - opencv=4.4.0
   - openh264=2.1.0
