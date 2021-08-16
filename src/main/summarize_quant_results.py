@@ -25,7 +25,7 @@ METRIC_INFO = {
 }
 
 
-def main(result_paths, hide_list, show_list, print_tsv, no_se):
+def main(result_paths, hide_list, show_list, print_tsv, no_se, no_truncation):
     # Determine which metrics to show
     if not show_list:
         # Show all columns by default
@@ -40,7 +40,7 @@ def main(result_paths, hide_list, show_list, print_tsv, no_se):
     table.align['Method'] = 'l'
 
     for result_path in result_paths:
-        add_summary(table, result_path, no_se, table_headers, show_list)
+        add_summary(table, result_path, no_se, table_headers, show_list, no_truncation)
 
     if print_tsv:
         table.hrules = pt.NONE
@@ -62,7 +62,7 @@ def main(result_paths, hide_list, show_list, print_tsv, no_se):
     print(ret)
 
 
-def add_summary(table, result_path, no_se, table_headers, metric_keys):
+def add_summary(table, result_path, no_se, table_headers, metric_keys, no_truncation):
     npz = np.load(result_path)
 
     # Process per-video metric values (e.g., clip values, compute mean and standard error)
@@ -81,7 +81,7 @@ def add_summary(table, result_path, no_se, table_headers, metric_keys):
     # Construct the strings that will make up each column in the current row
     row = [result_path]
     for header, metric_key in zip(table_headers, metric_keys):
-        col_format = METRIC_INFO[metric_key].format
+        col_format = METRIC_INFO[metric_key].format if not no_truncation else '{:f}'
         mean = data.get('{}_mean'.format(metric_key), data.get(metric_key))
         sem_value = data.get('{}_sem'.format(metric_key), None)
         if sem_value is not None and not no_se:
@@ -104,6 +104,8 @@ if __name__ == '__main__':
                         help='Flag to print table in TSV format')
     parser.add_argument('--no-se', action='store_true',
                         help='Flag to not print standard error')
+    parser.add_argument('--no-truncation', action='store_true',
+                        help='Flag to not truncate printed values')
 
     hide_show_args = parser.add_mutually_exclusive_group()
     hide_show_args.add_argument('-h', '--hide', type=str, nargs='+', dest='hide_list', help='The columns to hide')
