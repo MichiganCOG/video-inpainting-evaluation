@@ -1,6 +1,7 @@
 -f https://download.pytorch.org/whl/torch_stable.html
 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu101/torch1.6/index.html
 
+func-timeout==4.3.5
 opencv-python==4.4.0.46
 prettytable==0.7.2
 scikit-image==0.17.2
