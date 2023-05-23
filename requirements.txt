@@ -1,0 +1,9 @@
+-f https://download.pytorch.org/whl/torch_stable.html
+-f https://dl.fbaipublicfiles.com/detectron2/wheels/cu101/torch1.6/index.html
+
+opencv-python==4.4.0.46
+prettytable==0.7.2
+scikit-image==0.17.2
+torch==1.6.0
+torchvision==0.7.0
+tqdm==4.49.0
