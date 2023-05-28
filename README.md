@@ -4,18 +4,22 @@ This project evaluates metrics used to evaluate video inpainting models. It incl
 performance (PSNR, SSIM, LPIPS, PVCS), realism (FID, video FID), and temporal consistency (warping error, patch
 consistency).
 
+Note: This project is in maintenance mode due to the author graduating. Errors will be addressed to the greatest extent possible, but new features and upgrades will not.
+
 ## Installation and Setup
 
 1. Create an environment and install project dependencies with conda:
 
     ```bash
-    conda create -p ./env -y
-    conda activate ./env
-    conda env update -f environment.yml
+    conda env create -p ./env -f environment.yml
     ```
 
    Always make sure this environment is activated when running the commands in this document, and that commands are run
    from this project's root directory unless otherwise specified.
+
+   ```bash
+   conda activate ./env
+   ```
 
 2. Run `install-flownet2.sh` to compile FlowNet2's custom layers:
 
