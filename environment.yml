@@ -1,15 +1,9 @@
 channels:
-  - pytorch
   - conda-forge
-  - anaconda
+  - defaults
 dependencies:
   - cudatoolkit-dev=11.0.3
-  - func_timeout=4.3.5
-  - opencv=4.4.0
-  - openh264=2.1.0
-  - prettytable=0.7.2
   - python=3.8.5
-  - pytorch=1.6.0
-  - scikit-image=0.17.2
-  - torchvision=0.7.0
-  - tqdm=4.49.0
+  - pip=21.0.1
+  - pip:
+    - -r requirements.txt
